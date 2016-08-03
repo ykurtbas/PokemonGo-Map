@@ -25,7 +25,7 @@ class Notifications:
                     if alarm['type'] == 'pushbullet':
                         self.alarms.append(PB_Alarm(alarm['api_key']))
                     if alarm['type'] == 'slack':
-                        self.alarms.append(Slack_Alarm(args.slack_key, '#' + args.slack_channel))
+                        self.alarms.append(Slack_Alarm(args.slack_key, '#' + args.slack_channel, args.location))
                     if alarm['type'] == 'twilio':
                         self.alarms.append(Twilio_Alarm(alarm['account_sid'], alarm['auth_token'], alarm['to_number'],
                                                         alarm['from_number']))

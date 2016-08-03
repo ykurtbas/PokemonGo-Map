@@ -8,11 +8,11 @@ log = logging.getLogger(__name__)
 
 
 class Slack_Alarm(Alarm):
-    def __init__(self, api_key, channel):
+    def __init__(self, api_key, channel, location):
         self.client = Slacker(api_key)
         self.channel = channel
         log.info("Slacker_Alarm intialized.")
-        self.client.chat.post_message(self.channel, 'PokeAlarm activated! We will alert this channel about pokemon.')
+        self.client.chat.post_message(self.channel, 'PokeAlarm activated! We will alert this channel about pokemon in the area of ' + location)
 
     def pokemon_alert(self, pokemon):
         notification_text = "A wild " + pokemon['name'].title() + " has appeared!"
