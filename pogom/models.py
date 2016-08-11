@@ -13,6 +13,7 @@ from playhouse.shortcuts import RetryOperationalError
 from datetime import datetime, timedelta
 from base64 import b64encode
 
+from pogom.alarm.notifications import Notifications
 from . import config
 from .utils import get_pokemon_name, get_pokemon_rarity, get_pokemon_types, get_args, send_to_webhook
 from .transform import transform_from_wgs_to_gcj
@@ -22,6 +23,7 @@ log = logging.getLogger(__name__)
 
 args = get_args()
 flaskDb = FlaskDB()
+notifier = Notifications()
 
 
 class MyRetryDB(RetryOperationalError, PooledMySQLDatabase):
@@ -374,6 +376,7 @@ def parse_map(map_dict, step_location):
     gyms_upserted = 0
 
     if pokemons and config['parse_pokemon']:
+        notifier.notify_pkmns(pokemons)
         pokemons_upserted = len(pokemons)
         bulk_upsert(Pokemon, pokemons)
 

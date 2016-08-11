@@ -18,6 +18,10 @@ def gmaps_link(lat, lng):
     return 'http://maps.google.com/maps?q={}'.format(latLon)
 
 
+def xcode_link(lat, lng):
+    return ' [XC] <wpt lat="{}" lon="{}"/>'.format(repr(lat), repr(lng))
+
+
 def pkmn_time_text(time):
     s = (time - datetime.utcnow()).total_seconds()
     (m, s) = divmod(s, 60)
