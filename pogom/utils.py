@@ -138,6 +138,9 @@ def get_args():
                         nargs='*', default=False, dest='webhooks')
     parser.add_argument('--ssl-certificate', help='Path to SSL certificate file')
     parser.add_argument('--ssl-privatekey', help='Path to SSL private key file')
+
+    parser.add_argument('--slack-key', help='Slack API key')
+    parser.add_argument('--slack-channel', help='Slack channel', default='#general')
     parser.set_defaults(DEBUG=False)
 
     args = parser.parse_args()
